@@ -7,7 +7,6 @@ const extendedForecast = document.querySelector('.extended-forecast');
 const weatherData = document.querySelector('.right');
 
 searchButton.addEventListener('click',()=>{
-  
   weatherData.classList.remove('sm:hidden')
   extendedForecast.innerHTML = '';
   const city = cityInput.value.trim();
@@ -16,7 +15,36 @@ searchButton.addEventListener('click',()=>{
     fetchExtendedForecast(city);
     cityInput.value = '';
   }
-})
+});
+
+currentLocation.addEventListener('click',()=>{
+
+  weatherData.classList.remove('sm:hidden')
+  extendedForecast.innerHTML = '';
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(position => {
+      const { latitude, longitude } = position.coords;
+      getWeatherByCoordinates(latitude, longitude);
+    }, error => {
+      console.error('Error retrieving location:', error);
+    });
+  } else {
+    alert('Geolocation is not supported by this browser.');
+  }
+});
+
+async function getWeatherByCoordinates(lat, lon) {
+  const url = `https://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${lat},${lon}`;
+
+  try {
+    const response = await fetch(url);
+    const data = await response.json();
+    displayCurrentWeather(data);
+    fetchExtendedForecast(data.location.name)
+  } catch (error) {
+    console.error(error.message);
+  }
+}
 
 async function fetchWeatherData(city) {
   try {
@@ -68,8 +96,6 @@ function displayCurrentWeather(data){
 }
 
 function displayExtendedForecast(data){
-  // const forecastContainer = document.createElement('div');
-  // forecastContainer.classList.add('mt-5');
 
   data.forecast.forecastday.forEach(forecast => {
     const {date, day} = forecast;
@@ -85,7 +111,5 @@ function displayExtendedForecast(data){
     `
     extendedForecast.innerHTML += html;
   });
-
-  // extendedForecast.appendChild(forecastContainer);
 
 }
