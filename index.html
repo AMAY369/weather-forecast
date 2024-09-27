@@ -6,9 +6,34 @@
   <title>Weather Forecast</title>
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
+<body class="bg-[url('https://wallpaperaccess.com/full/3481767.jpg')]">
   
+  <div class="container flex flex-col items-center h-screen w-full gap-5">
+    <h1 class="text-2xl font-bold text-center mt-10">Weather Dashboard</h1>
+    <div class="content bg-blue-300 bg-opacity-70 w-9/12 h-3/5 rounded-md flex">
+      <div class="left w-1/3 p-4">
+        <div class="flex flex-col gap-3">
+          <label class="text-black font-bold" for="city-input">Enter City Name</label>
+          <input id="city-input" type="text" class="p-3 text-gray-500 bg-gray-200 rounded" placeholder="London">
+          <button type="button" class="text-white bg-blue-600 rounded py-2">Search</button>
+          <span class="text-center">or</span>
+          <button class="bg-gray-500 py-2 text-white rounded">Use Current Location</button>
+        </div>
+
+      </div>
+      <div class="right p-4 flex flex-col gap-3 w-8/12">
+        <div class="current-weather h-1/4 bg-blue-600 rounded-md w-full mt-5">
+
+        </div>
+        <h4 class="text-lg font-bold">5-Day Forecast</h4>
+        <div class="extended-forecast grid grid-cols-5 gap-2">
+
+        </div>
+      </div>
+    </div>
+  </div>
 
   <script src="app.js"></script>
 </body>
