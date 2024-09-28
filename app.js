@@ -13,7 +13,6 @@ loadRecentCities();
 searchButton.addEventListener('click', () => {
   const city = cityInput.value.trim();
   if (city) {
-    weatherData.classList.remove('hidden');
     fetchWeatherData(city);
     fetchExtendedForecast(city);
     saveCityToLocalStorage(city);
@@ -25,7 +24,6 @@ searchButton.addEventListener('click', () => {
 });
 
 currentLocation.addEventListener('click', () => {
-  weatherData.classList.remove('hidden');
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(position => {
       const { latitude, longitude } = position.coords;
@@ -38,8 +36,8 @@ currentLocation.addEventListener('click', () => {
   }
 });
 
+
 recentCitiesDropdown.addEventListener('change', () => {
-  weatherData.classList.remove('hidden');
   const selectedCity = recentCitiesDropdown.value;
   if (selectedCity) {
     fetchWeatherData(selectedCity);
@@ -78,8 +76,9 @@ async function fetchExtendedForecast(city) {
     }
     const data = await response.json();
     displayExtendedForecast(data);
-  } catch (error) {
-      alert(error.message);
+  } 
+  catch (error) {
+    console.error(error.message);
   }
 }
 
@@ -103,6 +102,8 @@ function displayCurrentWeather(data) {
     </div>
   `;
   currentWeather.innerHTML = html;
+  weatherData.classList.remove('hidden');
+  weatherData.classList.remove('md:hidden');
 }
 
 function displayExtendedForecast(data) {
@@ -111,7 +112,7 @@ function displayExtendedForecast(data) {
     const { date, day } = forecast;
     const { avgtemp_c, avghumidity, maxwind_kph, condition } = day;
     const html = `
-      <div class="bg-gray-200 p-3 rounded-md shadow-md mb-2">
+      <div class="bg-white bg-opacity-70 text-black p-3 rounded-md shadow-md mb-2">
         <p class="font-semibold">${date}</p>
         <img src="${condition.icon}" alt="${condition.text}">
         <p>Temp: ${avgtemp_c}°C</p>
