@@ -1,5 +1,7 @@
 # Weather Dashboard
 
+[Github Link](https://github.com/AMAY369/weather-forecast)
+
 This is a responsive Weather Dashboard built using HTML, Tailwind CSS, and JavaScript. The application allows users to search for weather forecasts for a specific city or get weather data based on their current location. The design is optimized for iPhone SE, iPad Mini, and desktop/laptop displays.
 
 ## Features
