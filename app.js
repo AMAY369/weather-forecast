@@ -10,6 +10,7 @@ const recentCitiesDropdown = document.getElementById('recent-cities');
 
 loadRecentCities();
 
+// event listener for search button 
 searchButton.addEventListener('click', () => {
   const city = cityInput.value.trim();
   if (city) {
@@ -23,6 +24,7 @@ searchButton.addEventListener('click', () => {
   }
 });
 
+// event listener for current location button 
 currentLocation.addEventListener('click', () => {
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(position => {
@@ -36,7 +38,7 @@ currentLocation.addEventListener('click', () => {
   }
 });
 
-
+// event listner for recently searched cities 
 recentCitiesDropdown.addEventListener('change', () => {
   const selectedCity = recentCitiesDropdown.value;
   if (selectedCity) {
@@ -45,6 +47,8 @@ recentCitiesDropdown.addEventListener('change', () => {
   }
 });
 
+
+// function for fetching weather data by coordinates 
 async function getWeatherByCoordinates(lat, lon) {
   const url = `https://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${lat},${lon}`;
   try {
@@ -57,6 +61,8 @@ async function getWeatherByCoordinates(lat, lon) {
   }
 }
 
+
+// function for fetching data by city name
 async function fetchWeatherData(city) {
   try {
     const response = await fetch(`https://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${city}`);
@@ -68,6 +74,8 @@ async function fetchWeatherData(city) {
   }
 }
 
+
+// function for fetching extended weather forecast data 
 async function fetchExtendedForecast(city) {
   try {
     const response = await fetch(`https://api.weatherapi.com/v1/forecast.json?key=${apiKey}&q=${city}&days=5`);
@@ -82,6 +90,8 @@ async function fetchExtendedForecast(city) {
   }
 }
 
+
+// function for displaying current weather 
 function displayCurrentWeather(data) {
   const { location, current } = data;
   const { name, region, country } = location;
@@ -106,6 +116,8 @@ function displayCurrentWeather(data) {
   weatherData.classList.remove('md:hidden');
 }
 
+
+// function for displaying extended weather forecast 
 function displayExtendedForecast(data) {
   extendedForecast.innerHTML = '';
   data.forecast.forecastday.forEach(forecast => {
@@ -124,9 +136,10 @@ function displayExtendedForecast(data) {
   });
 }
 
+
+// function for saving city name in localStorage 
 function saveCityToLocalStorage(city) {
   let recentCities = JSON.parse(localStorage.getItem('recentCities')) || [];
-  
   if (!recentCities.includes(city)) {
     recentCities.push(city);
     localStorage.setItem('recentCities', JSON.stringify(recentCities));
@@ -134,6 +147,8 @@ function saveCityToLocalStorage(city) {
   }
 }
 
+
+// function for loading city name for recent searched city dropdown 
 function loadRecentCities() {
   let recentCities = JSON.parse(localStorage.getItem('recentCities')) || [];
   if (recentCities.length > 0) {
