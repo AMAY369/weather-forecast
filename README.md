@@ -1,37 +1,30 @@
-# Weather Dashboard
+# Weather Forecast
 
-[Github Link](https://github.com/AMAY369/weather-forecast)
-
-This is a responsive Weather Dashboard built using HTML, Tailwind CSS, and JavaScript. The application allows users to search for weather forecasts for a specific city or get weather data based on their current location. The design is optimized for iPhone SE, iPad Mini, and desktop/laptop displays.
+A weather application that fetches current conditions and the forecast for any city from a weather API.
 
 ## Features
 
-- **City Search**: Users can input a city name to get the weather forecast.
-- **Current Location**: Users can retrieve weather data for their current location.
-- **5-Day Forecast**: Displays 5-day weather forecast.
-- **Responsive Design**: Optimized for various devices such as iPhones, iPads, and desktops.
+- Search weather by city name
+- Current temperature, humidity and wind conditions
+- Forecast view
+- Error handling for unknown cities and failed requests
 
-## Technologies Used
+## Tech Stack
 
-- **HTML**: For basic structure.
-- **Tailwind CSS**: For responsiveness and styling.
-- **JavaScript**: To handle dynamic weather data and interactions.
-- **Weather API**: To fetch weather data from weatherAPI.com.
+JavaScript, HTML, CSS, Fetch API
 
-## Setup Instructions
+## Getting Started
 
-### Prerequisites
+Clone the repository and open `index.html` in a browser, or serve it locally:
 
-Before running the project, ensure you have the following installed on your system:
+```sh
+git clone https://github.com/AMAY369/weather-forecast.git
+cd weather-forecast
+npx serve .
+```
 
-- [Node.js](https://nodejs.org/) (For JavaScript runtime)
-- A text editor (like VSCode or Sublime)
-- Account on [weatherAPI](https://www.weatherapi.com/)
+You will need an API key from your weather provider. Add it in the configuration at the top of the script file.
 
-### Step-by-Step Setup
+## License
 
-1. **Clone the Repository**
-   ```bash
-   git clone https://github.com/your-repository/weather-dashboard.git
-2. **Open the project file in your code editor**
-3. **Open with live server**
+MIT
